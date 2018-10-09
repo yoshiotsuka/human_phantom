@@ -11,8 +11,8 @@ Scene* HelloWorld::createScene()
 // Print useful error message instead of segfaulting when files are not there.
 static void problemLoading(const char* filename)
 {
-    printf("Error while loading: %s\n", filename);
-    printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
+   // printf("Error while loading: %s\n", filename);
+   // printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
 
 // on "init" you need to initialize your instance
@@ -56,63 +56,8 @@ bool HelloWorld::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
-
-	////ハローワールドの表記をしている
- //   auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
- //   if (label == nullptr)
- //   {
- //       problemLoading("'fonts/Marker Felt.ttf'");
- //   }
- //   else
- //   {
- //       // position the label on the center of the screen
- //       label->setPosition(Vec2(origin.x + visibleSize.width/2,
- //                               origin.y + visibleSize.height - label->getContentSize().height));
-
- //       // add the label as a child to this layer
- //       this->addChild(label, 1);
- //   }
-
-    // add "HelloWorld" splash screen"
-
-    auto sprite = Sprite::create("unnamed.jpg");
-    if (sprite == nullptr)
-    {
-        problemLoading("'unnamed.jpg'");
-    }
-    else
-    {
-        // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-        // add the sprite as a child to this layer
-        this->addChild(sprite, 0);
-    }
-
-	auto Player = Sprite::create("player.jpg");
-	if (sprite == nullptr)
-	{
-		problemLoading("player.jpg");
-	}
-	else
-	{
-		//Player->setPosition(Vec2(visibleSize.width / 3 + origin.x, visibleSize.height / 2 + origin.y));
-		/*Player->setPosition(ccp(0, 0));*/
-	}
-
-	Size size = Director::getInstance()->getWinSize();
-
-	Player->setPosition(Vec2(550,100));
-	
-	//auto ooooooooooo = Player->convertToWorldSpace(Player->getPosition());
-
-
-	this->addChild(Player, 0);
+   // TODO
+	player.Initialize(this);
 
     return true;
 }
