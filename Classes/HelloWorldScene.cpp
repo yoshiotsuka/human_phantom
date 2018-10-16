@@ -1,5 +1,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "YoshiClass\PlayerMove.h"
+
 
 USING_NS_CC;
 
@@ -27,6 +29,8 @@ bool HelloWorld::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -57,7 +61,9 @@ bool HelloWorld::init()
     this->addChild(menu, 1);
 
    // TODO
-	player.Initialize(this);
+	PlayerMove* player_move;
+	player_move = new PlayerMove();
+	player.Initialize(this, player_move);
 
     return true;
 }
@@ -84,4 +90,7 @@ void Update()
 {
 	float player_move = 0.0f;
 }
+
+
+
 

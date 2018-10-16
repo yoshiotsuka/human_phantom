@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "cocos2d.h"
+#include "Classes\YoshiClass\PlayerMove.h"
 
 Player::Player()
 {
@@ -11,8 +12,9 @@ Player::~Player()
 
 }
 
-bool Player::Initialize(cocos2d::Scene* conectScene)
+bool Player::Initialize(cocos2d::Scene* conectScene, PlayerMove* player_move)
 {
+	
 	auto sprite = Sprite::create("unnamed.jpg");
 	if (sprite == nullptr)
 	{
@@ -21,14 +23,12 @@ bool Player::Initialize(cocos2d::Scene* conectScene)
 	else
 	{
 		// position the sprite on the center of the screen
-		
-
 		// add the sprite as a child to this layer
 		conectScene->addChild(sprite, 0);
 	}
 
 	// プレイヤー画像データ読み込み
-	auto Player = Sprite::create("player.jpg");
+	player = Sprite::create("player.jpg");
 	if (sprite == nullptr)
 	{
 		
@@ -41,11 +41,22 @@ bool Player::Initialize(cocos2d::Scene* conectScene)
 
 	Size size = Director::getInstance()->getWinSize();
 
-	Player->setPosition(Vec2(550, 100));
+	player->setPosition(Vec2(550, 200));
 
-	//auto ooooooooooo = Player->convertToWorldSpace(Player->getPosition());
+	this->player_move = player_move;
+	this->player_move->Init(conectScene,this);
 
-
-	conectScene->addChild(Player, 0);
+	conectScene->addChild(player, 0);
 	return true;
+}
+
+Vec2 Player::GetPosition() 
+{
+
+	return player->getPosition();
+
+}
+void Player::SetPostion(Vec2 postion)
+{
+	player->setPosition(postion);
 }

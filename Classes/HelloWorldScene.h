@@ -2,7 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-#include "HamadaClass\Player.hpp"
+#include "Classes\HamadaClass\Player.hpp"
 
 class HelloWorld : public cocos2d::Scene
 {
@@ -16,9 +16,11 @@ public:
 	void Update();
     
     // implement the "static create()" method manually
-    CREATE_FUNC(HelloWorld);
+	CREATE_FUNC(HelloWorld);
 private:
+
 	Player player;
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
