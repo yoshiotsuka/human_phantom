@@ -18,7 +18,11 @@ bool PlayerMove::Init(cocos2d::Scene* scene , Player* player)
 	listener->onMouseMove = CC_CALLBACK_1(PlayerMove::onMouseMove, this);
 	listener->onMouseDown = CC_CALLBACK_1(PlayerMove::onMouseDown, this);
 	listener->onMouseUp = CC_CALLBACK_1(PlayerMove::onMouseUp, this);
+	//タッチフラグ初期化
+	touchflag = false;
 
+
+	
 	scene->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, scene);
 
 	//プレイヤームーブクラスが持っているプレイヤーポインタに、プレイヤーを結びつける。
@@ -38,16 +42,23 @@ void PlayerMove::onMouseMove(Event* event)
 {
 	auto player_mouse = (EventMouse*)event;
 	//player->GetPosition();
+	if (touchflag == true)
+	{
+		player->SetPostion(Point(player_mouse->getCursorX(), player_mouse->getCursorY()));
 
-	player->SetPostion(Point(player_mouse->getCursorX(),player_mouse->getCursorY()));
-
+	}
 
 }
 void PlayerMove::onMouseDown(Event* event)
 {
-
+	touchflag = true;
+	
+	
 }
 void PlayerMove::onMouseUp(Event* event)
 {
+	
 
+	touchflag = false;
 }
+

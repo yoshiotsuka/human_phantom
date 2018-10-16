@@ -20,6 +20,8 @@ private:
 	void onMouseDown(cocos2d::Event* event); // マウスボタンダウン
 	void onMouseUp  (cocos2d::Event* event); // マウスボタンアップ
 
+	bool touchflag;
+
 	Player* player;
 
 };
