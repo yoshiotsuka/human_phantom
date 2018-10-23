@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "YoshiClass\PlayerMove.h"
+#include "FujimuraClass\EnemyCollection.h"
 
 
 USING_NS_CC;
@@ -27,45 +28,36 @@ bool HelloWorld::init()
         return false;
     }
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-
-
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-
-    if (closeItem == nullptr ||
-        closeItem->getContentSize().width <= 0 ||
-        closeItem->getContentSize().height <= 0)
-    {
-        problemLoading("'CloseNormal.png' and 'CloseSelected.png'");
-    }
-    else
-    {
-        //float x = origin.x + visibleSize.width - closeItem->getContentSize().width/1;
-        float y = origin.y + closeItem->getContentSize().height/1;
-        //closeItem->setPosition(Vec2(x,y));
-    }
-
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
-
    // TODO
 	PlayerMove* player_move;
 	player_move = new PlayerMove();
 	player.Initialize(this, player_move);
 
+	this->enemyCollection_ = std::shared_ptr<EnemyCollection>(new EnemyCollection());
+	this->enemyCollection_->Initialize(this);
+
+	this->scheduleUpdate();
+
     return true;
+
+}
+
+void HelloWorld::update(float delta){
+
+	static float totalDelta = 0.0f;
+
+	totalDelta += delta;
+
+	if (totalDelta > 1.0f){
+
+		totalDelta -= 1.0f;
+		//¶¬ˆ—
+		this->enemyCollection_->CreateEnemy(this);
+
+	}
+
+	this->enemyCollection_->Update();
+
 }
 
 
@@ -85,12 +77,3 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 	//_eventDispatcher->dispatchEvent(&customEndEvent);
 
 }
-
-void Update()
-{
-	float player_move = 0.0f;
-}
-
-
-
-

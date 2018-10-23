@@ -3,6 +3,10 @@
 
 #include "cocos2d.h"
 #include "Classes\HamadaClass\Player.hpp"
+#include "Classes\OkuhamaClass\Enemy.h"
+#include <memory>
+
+class EnemyCollection;
 
 class HelloWorld : public cocos2d::Scene
 {
@@ -10,6 +14,7 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
+	virtual void update(float delta) override;
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
@@ -20,6 +25,8 @@ public:
 private:
 
 	Player player;
+	Enemy enemy_;
+	std::shared_ptr<EnemyCollection> enemyCollection_;
 
 };
 
