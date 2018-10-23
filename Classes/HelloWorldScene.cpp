@@ -67,6 +67,8 @@ bool HelloWorld::init()
 	ghost = new Ghost();
 	ghost->Initialize(this, &player);
 
+	player_move->AddObserver(ghost);
+
     return true;
 }
 

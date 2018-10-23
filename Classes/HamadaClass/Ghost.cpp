@@ -1,6 +1,7 @@
 #include "Ghost.hpp"
 #include "cocos2d.h"
 #include "Classes\HamadaClass\Player.hpp"
+#include "YoshiClass\PlayerMove.h"
 
 
 Ghost::Ghost()
@@ -43,6 +44,21 @@ bool Ghost::Initialize(cocos2d::Scene* conectScene, Player* player)
 	プレイヤーを結びつける*/ 
 	this->player = player;
 	return true;
+}
+
+/*引数subjectは通知してきたPlayerMoveを受け取るため*/
+void Ghost::Update(Subject* subject)
+{
+	/*subjectをキャストして、PlayerMoveを受ける*/
+	PlayerMove* playerMove = (PlayerMove*)subject;
+
+	/*PlayerMoveの座標を取得する*/
+	position = playerMove->GetPosition();
+	/*追従する際に座標をずらす*/
+	position.x -= 100.0f;
+	position.y -= 100.0f;
+
+	ghost->setPosition(position.x, position.y);
 }
 
 // ゴーストの座標を取得
