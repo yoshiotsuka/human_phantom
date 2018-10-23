@@ -23,6 +23,5 @@ private:
 	bool touchflag;
 
 	Player* player;
-
 };
 

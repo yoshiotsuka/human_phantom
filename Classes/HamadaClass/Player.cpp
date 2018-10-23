@@ -14,7 +14,7 @@ Player::~Player()
 
 bool Player::Initialize(cocos2d::Scene* conectScene, PlayerMove* player_move)
 {
-	
+	// ƒvƒŒƒCƒ„[
 	auto sprite = Sprite::create("unnamed.jpg");
 	if (sprite == nullptr)
 	{
@@ -41,7 +41,8 @@ bool Player::Initialize(cocos2d::Scene* conectScene, PlayerMove* player_move)
 
 	Size size = Director::getInstance()->getWinSize();
 
-	player->setPosition(Vec2(550, 200));
+	player->setPosition(Vec2(550, 300));
+	
 
 	this->player_move = player_move;
 	this->player_move->Init(conectScene,this);
