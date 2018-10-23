@@ -64,6 +64,10 @@ bool HelloWorld::init()
 	PlayerMove* player_move;
 	player_move = new PlayerMove();
 	player.Initialize(this, player_move);
+	ghost = new Ghost();
+	ghost->Initialize(this, &player);
+
+	player_move->AddObserver(ghost);
 
     return true;
 }

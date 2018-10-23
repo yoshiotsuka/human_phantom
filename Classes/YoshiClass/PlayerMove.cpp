@@ -45,10 +45,17 @@ void PlayerMove::onMouseMove(Event* event)
 	if (touchflag == true)
 	{
 		player->SetPostion(Point(player_mouse->getCursorX(), player_mouse->getCursorY()));
-
+		/*登録されているオブザーバーに通知する*/
+		this->notifyObservers();
 	}
 
 }
+
+Vec2 PlayerMove::GetPosition()
+{
+	return player->GetPosition();
+}
+
 void PlayerMove::onMouseDown(Event* event)
 {
 	touchflag = true;

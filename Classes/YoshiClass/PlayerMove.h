@@ -1,16 +1,21 @@
 #pragma once
 #include "HelloWorldScene.h"
 #include "cocos2d.h"
+#include "HamadaClass\Observer.hpp"
 
 class Player;
 
-class PlayerMove
+/*プレイヤーの動きを管理するクラス
+Subjectを継承したのは、移動したら通知するため*/
+class PlayerMove : public Subject
 {
 public:
 	PlayerMove();
 	~PlayerMove();
 
 	bool Init(cocos2d::Scene* scene , Player* player);
+	
+	Vec2 GetPosition();
 
 private:
 
@@ -23,6 +28,6 @@ private:
 	bool touchflag;
 
 	Player* player;
-
+	Vec2 position;
 };
 
