@@ -2,6 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "YoshiClass\PlayerMove.h"
 #include "FujimuraClass\EnemyCollection.h"
+#include "FujimuraClass/PlayerBulletCollection.h"
 
 
 USING_NS_CC;
@@ -33,8 +34,8 @@ bool HelloWorld::init()
 	player_move = new PlayerMove();
 	player.Initialize(this, player_move);
 
-	this->enemyCollection_ = std::shared_ptr<EnemyCollection>(new EnemyCollection());
-	this->enemyCollection_->Initialize(this);
+	EnemyCollection::GetInstance().Initialize(this);
+	PlayerBulletCollection::GetInstance().Initialize(this);
 
 	this->scheduleUpdate();
 
@@ -52,11 +53,17 @@ void HelloWorld::update(float delta){
 
 		totalDelta -= 1.0f;
 		//¶¬ˆ—
-		this->enemyCollection_->CreateEnemy(this);
+		EnemyCollection::GetInstance().CreateEnemy(this);
+
+		float designScreenWidth = cocos2d::Director::getInstance()->getOpenGLView()->getDesignResolutionSize().width;
+		cocos2d::RandomHelper random;
+		float x = random.random_real(0.0f, designScreenWidth);
+		PlayerBulletCollection::GetInstance().CreateBullet(this,Vec2(x,-100.0f));
 
 	}
 
-	this->enemyCollection_->Update();
+	EnemyCollection::GetInstance().Update();
+	PlayerBulletCollection::GetInstance().Update();
 
 }
 

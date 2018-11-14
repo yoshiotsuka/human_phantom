@@ -5,12 +5,18 @@
 
 class Enemy;
 
-class EnemyCollection{
+class EnemyCollection final{
 
 public:
 
-	EnemyCollection();
-	virtual ~EnemyCollection();
+	static EnemyCollection& GetInstance() {
+
+		static EnemyCollection instance;
+		return instance;
+
+	}
+
+	~EnemyCollection();
 
 	bool Initialize(cocos2d::Scene* scene);
 	void Update();
@@ -20,9 +26,9 @@ public:
 
 private:
 
+	EnemyCollection();
 
-	cocos2d::SpriteBatchNode* enemyTexture_;
-	cocos2d::Action* enemyAction_;
+    cocos2d::SpriteBatchNode* enemyTexture_;
 
 	std::vector<Enemy*> enemys_;
 

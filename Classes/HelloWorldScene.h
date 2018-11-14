@@ -25,8 +25,6 @@ public:
 private:
 
 	Player player;
-	Enemy enemy_;
-	std::shared_ptr<EnemyCollection> enemyCollection_;
 
 };
 
