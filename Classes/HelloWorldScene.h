@@ -3,10 +3,7 @@
 
 #include "cocos2d.h"
 #include "Classes\HamadaClass\Player.hpp"
-#include "Classes\OkuhamaClass\Enemy.h"
-#include <memory>
-
-class EnemyCollection;
+#include "Classes\HamadaClass\Ghost.hpp"
 
 class HelloWorld : public cocos2d::Scene
 {
@@ -25,6 +22,7 @@ public:
 private:
 
 	Player player;
+	Ghost* ghost;
 
 };
 

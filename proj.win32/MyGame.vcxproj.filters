@@ -33,6 +33,12 @@
     <ClCompile Include="..\Classes\YoshiClass\PlayerMove.cpp">
       <Filter>src\Yoshi</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\HamadaClass\Ghost.cpp">
+      <Filter>src\hamada</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HamadaClass\Observer.cpp">
+      <Filter>src\hamada</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -49,6 +55,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\YoshiClass\PlayerMove.h">
       <Filter>src\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HamadaClass\Ghost.hpp">
+      <Filter>src\hamada</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HamadaClass\Observer.hpp">
+      <Filter>src\hamada</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

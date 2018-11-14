@@ -47,23 +47,14 @@ void HelloWorld::update(float delta){
 
 	static float totalDelta = 0.0f;
 
-	totalDelta += delta;
+   // TODO
+	PlayerMove* player_move;
+	player_move = new PlayerMove();
+	player.Initialize(this, player_move);
+	ghost = new Ghost();
+	ghost->Initialize(this, &player);
 
-	if (totalDelta > 1.0f){
-
-		totalDelta -= 1.0f;
-		//¶¬ˆ—
-		EnemyCollection::GetInstance().CreateEnemy(this);
-
-		float designScreenWidth = cocos2d::Director::getInstance()->getOpenGLView()->getDesignResolutionSize().width;
-		cocos2d::RandomHelper random;
-		float x = random.random_real(0.0f, designScreenWidth);
-		PlayerBulletCollection::GetInstance().CreateBullet(this,Vec2(x,-100.0f));
-
-	}
-
-	EnemyCollection::GetInstance().Update();
-	PlayerBulletCollection::GetInstance().Update();
+	player_move->AddObserver(ghost);
 
 }
 

@@ -38,14 +38,23 @@ void PlayerMove::onMouseMove(Event* event)
 {
 	auto player_mouse = (EventMouse*)event;
 	//player->GetPosition();
-
-	player->SetPostion(Point(player_mouse->getCursorX(),player_mouse->getCursorY()));
-
+	if (touchflag == true)
+	{
+		player->SetPostion(Point(player_mouse->getCursorX(), player_mouse->getCursorY()));
+		/*登録されているオブザーバーに通知する*/
+		this->notifyObservers();
 
 }
+
+Vec2 PlayerMove::GetPosition()
+{
+	return player->GetPosition();
+}
+
 void PlayerMove::onMouseDown(Event* event)
 {
-
+	touchflag = true;
+	
 }
 void PlayerMove::onMouseUp(Event* event)
 {
