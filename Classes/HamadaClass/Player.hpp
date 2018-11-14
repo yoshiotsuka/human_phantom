@@ -4,6 +4,7 @@
 using namespace cocos2d;
 
 class PlayerMove;
+class Bullet;
 
 class Player
 {
@@ -22,7 +23,7 @@ private:
 	Sprite* player;
 	float player_movement_x;
 	float player_movement_y;
-
+	Bullet* bullet;
 
 };
 

@@ -60,7 +60,6 @@ void PlayerMove::onMouseDown(Event* event)
 {
 	touchflag = true;
 	
-	
 }
 void PlayerMove::onMouseUp(Event* event)
 {

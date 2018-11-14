@@ -2,6 +2,7 @@
 #include "HelloWorldScene.h"
 #include "cocos2d.h"
 #include "HamadaClass\Observer.hpp"
+#include "OkuhamaClass\Bullet.h"
 
 class Player;
 
@@ -29,5 +30,6 @@ private:
 
 	Player* player;
 	Vec2 position;
+	Bullet* bullet;
 };
 
