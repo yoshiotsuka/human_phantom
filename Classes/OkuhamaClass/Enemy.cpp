@@ -27,6 +27,7 @@ bool Enemy::init(cocos2d::Scene*     scene,
 
 	}
 
+	this->sprite_->setVisible(true);
 	sprite_->setPosition(position);
 
 	if (action != nullptr) {
@@ -38,4 +39,15 @@ bool Enemy::init(cocos2d::Scene*     scene,
 	this->usingFlag_ = true;
 
 	return true;
+}
+
+void Enemy::Used() {
+
+	ActionManager* manager = this->sprite_->getActionManager();
+	manager->removeAllActionsFromTarget(this->sprite_);
+
+	this->sprite_->setVisible(false);
+
+	this->usingFlag_ = false;
+
 }

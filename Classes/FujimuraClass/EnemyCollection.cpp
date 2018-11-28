@@ -58,10 +58,24 @@ void EnemyCollection::CreateEnemy(cocos2d::Scene* scene){
 	cocos2d::RandomHelper random;
 	float x = random.random_real(0.0f,1000.0f);
 
-	cocos2d::Action* action = cocos2d::MoveTo::create(2.0f, cocos2d::Vec3(x, -160.0f, 0.0f));
+	cocos2d::Director* director = cocos2d::Director::getInstance();
+	float height = director->getOpenGLView()->getDesignResolutionSize().height;
+
+	cocos2d::Action* action = cocos2d::MoveBy::create(3.0f, cocos2d::Vec3(0, -(height + 500), 0.0f));
 
 	enemy->init(scene,texture,cocos2d::Vec2(x,2000.0f), action);
 
 	this->enemys_.push_back(enemy);
+
+}
+
+void EnemyCollection::EraseEnemy(Enemy* enemy) {
+
+	auto itr = std::find(this->enemys_.begin(), this->enemys_.end(), enemy);
+
+	if (itr == this->enemys_.end()) return;
+
+	this->enemys_.erase(itr);
+	EnemyFlyweight::GetInstance().UsedEnemyInstance(enemy);
 
 }

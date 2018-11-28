@@ -21,6 +21,7 @@ public:
 	bool Initialize(cocos2d::Scene* scene);
 	void Update();
 	void CreateEnemy(cocos2d::Scene* scene);
+	void EraseEnemy(Enemy* enemy);
 
 	std::vector<Enemy*>& GetEnemys(){ return this->enemys_; }
 

@@ -1,5 +1,5 @@
 #include "BulletFlyweight.h"
-#include "Bullet.h"
+#include "../OkuhamaClass/Bullet.h"
 
 BulletFlyweight::BulletFlyweight() {
 

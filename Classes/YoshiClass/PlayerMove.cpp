@@ -24,39 +24,37 @@ bool PlayerMove::Init(cocos2d::Scene* scene , Player* player)
 	//プレイヤームーブクラスが持っているプレイヤーポインタに、プレイヤーを結びつける。
 	this->player = player;
 
+	this->touchFlag_ = false;
+
 	return true;
 }
-void PlayerMove::Update()
-{
 
+void PlayerMove::Update() {
 
-	//	auto mouse = (EventMouse*)event;
-	//->setPosition(Point(mouse->getCursorX(),
-	//	mouse->getCursorY()));*/
+	if (touchFlag_ == true)
+	{
+		/*登録されているオブザーバーに通知する*/
+		this->notifyObservers();
+	}
+
 }
+
 void PlayerMove::onMouseMove(Event* event)
 {
 	auto player_mouse = (EventMouse*)event;
 	//player->GetPosition();
-	if (touchflag == true)
-	{
-		player->SetPostion(Point(player_mouse->getCursorX(), player_mouse->getCursorY()));
-		/*登録されているオブザーバーに通知する*/
-		this->notifyObservers();
+	player->SetPostion(Point(player_mouse->getCursorX(), player_mouse->getCursorY()));
 
-}
-
-Vec2 PlayerMove::GetPosition()
-{
-	return player->GetPosition();
 }
 
 void PlayerMove::onMouseDown(Event* event)
 {
-	touchflag = true;
+	touchFlag_ = true;
 	
 }
 void PlayerMove::onMouseUp(Event* event)
 {
+
+	touchFlag_ = false;
 
 }

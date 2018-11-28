@@ -53,7 +53,7 @@ void Ghost::Update(Subject* subject)
 	PlayerMove* playerMove = (PlayerMove*)subject;
 
 	/*PlayerMove‚ÌÀ•W‚ğæ“¾‚·‚é*/
-	position = playerMove->GetPosition();
+	position = playerMove->GetPlayerPosition();
 	/*’Ç]‚·‚éÛ‚ÉÀ•W‚ğ‚¸‚ç‚·*/
 	position.x -= 100.0f;
 	position.y -= 100.0f;

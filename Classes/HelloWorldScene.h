@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "Classes\HamadaClass\Player.hpp"
 #include "Classes\HamadaClass\Ghost.hpp"
+#include "FujimuraClass/PlayerShotObserver.h"
+#include "FujimuraClass/PlayerBulletCollisionMediator.h"
 
 class HelloWorld : public cocos2d::Scene
 {
@@ -22,7 +24,11 @@ public:
 private:
 
 	Player player;
+	PlayerMove* player_move;
 	Ghost* ghost;
+	PlayerShotObserver* shotObserver;
+
+	PlayerBulletCollisionMediator* playerBulletCollision;
 
 };
 

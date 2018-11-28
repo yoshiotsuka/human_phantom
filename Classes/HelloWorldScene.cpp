@@ -30,12 +30,24 @@ bool HelloWorld::init()
     }
 
    // TODO
-	PlayerMove* player_move;
+   // TODO
 	player_move = new PlayerMove();
 	player.Initialize(this, player_move);
 
+	ghost = new Ghost();
+	ghost->Initialize(this, &player);
+	player_move->AddObserver(ghost);
+
 	EnemyCollection::GetInstance().Initialize(this);
 	PlayerBulletCollection::GetInstance().Initialize(this);
+
+	shotObserver = new PlayerShotObserver();
+	player_move->AddObserver(shotObserver);
+
+	EnemyCollection* enemyManager = &EnemyCollection::GetInstance();
+	PlayerBulletCollection* playerBulletManager = &PlayerBulletCollection::GetInstance();
+
+	this->playerBulletCollision = new PlayerBulletCollisionMediator(playerBulletManager,enemyManager);
 
 	this->scheduleUpdate();
 
@@ -45,16 +57,23 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float delta){
 
-	static float totalDelta = 0.0f;
+	static float totaltime = 0;
 
-   // TODO
-	PlayerMove* player_move;
-	player_move = new PlayerMove();
-	player.Initialize(this, player_move);
-	ghost = new Ghost();
-	ghost->Initialize(this, &player);
+	totaltime += delta;
 
-	player_move->AddObserver(ghost);
+	player_move->Update();
+	
+	if (totaltime > 0.3f) {
+
+		totaltime -= 0.3f;
+		EnemyCollection::GetInstance().CreateEnemy(this);
+
+	}
+
+	EnemyCollection::GetInstance().Update();
+	PlayerBulletCollection::GetInstance().Update();
+
+	this->playerBulletCollision->Update();
 
 }
 

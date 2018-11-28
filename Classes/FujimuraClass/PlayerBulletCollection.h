@@ -20,14 +20,13 @@ public:
 	bool Initialize(cocos2d::Scene* scene);
 	void Update();
 	void CreateBullet(cocos2d::Scene* scene,cocos2d::Vec2 shotPos);
+	void EraseBullet( Bullet* bullet );
 
 	std::vector<Bullet*>& GetBullets() { return this->bullets_; }
 
 private:
 
 	PlayerBulletCollection();
-
-	cocos2d::SpriteBatchNode* bulletTexture_;
 
 	std::vector<Bullet*> bullets_;
 };

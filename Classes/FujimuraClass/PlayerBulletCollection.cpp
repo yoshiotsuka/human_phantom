@@ -1,10 +1,8 @@
 #include "PlayerBulletCollection.h"
-#include "Bullet.h"
+#include "../OkuhamaClass/Bullet.h"
 #include "BulletFlyweight.h"
 
 PlayerBulletCollection::PlayerBulletCollection() {
-
-	this->bulletTexture_ = nullptr;
 
 }
 
@@ -15,9 +13,6 @@ PlayerBulletCollection::~PlayerBulletCollection() {
 }
 
 bool PlayerBulletCollection::Initialize(cocos2d::Scene* scene) {
-
-	this->bulletTexture_ = cocos2d::SpriteBatchNode::create("HelloWorld.png");
-	scene->addChild(this->bulletTexture_);
 
 	return true;
 
@@ -56,12 +51,21 @@ void PlayerBulletCollection::CreateBullet(cocos2d::Scene* scene, cocos2d::Vec2 s
 	float designScreenHeight = director->getOpenGLView()->getDesignResolutionSize().height;
 
 	Bullet* bullet = BulletFlyweight::GetInstance().GetBulletInstance();
-	cocos2d::Texture2D* texture = this->bulletTexture_->getTexture();
 
-	cocos2d::Action* action = cocos2d::MoveBy::create(5.0f,cocos2d::Vec3(0.0f, designScreenHeight * 1.5f,0.0f));
-
-	bullet->init(scene, texture, shotPos, action);
+	bullet->Initialize(scene,shotPos);
 
 	this->bullets_.push_back(bullet);
+
+}
+
+
+void PlayerBulletCollection::EraseBullet(Bullet* bullet) {
+
+	auto itr = std::find(this->bullets_.begin(),this->bullets_.end(),bullet);
+
+	if (itr == this->bullets_.end()) return;
+
+	this->bullets_.erase(itr);
+	BulletFlyweight::GetInstance().UsedBulletInstance(bullet);
 
 }

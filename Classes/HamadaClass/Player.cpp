@@ -15,9 +15,6 @@ Player::~Player()
 bool Player::Initialize(cocos2d::Scene* conectScene, PlayerMove* player_move)
 {
 
-	bullet = new Bullet();
-	bullet->Initialize(conectScene);
-
 
 	// ƒvƒŒƒCƒ„[
 	auto sprite = Sprite::create("unnamed.jpg");
