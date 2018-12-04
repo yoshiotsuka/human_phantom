@@ -43,6 +43,10 @@ bool Ghost::Initialize(cocos2d::Scene* conectScene, Player* player)
 	/*ゴーストクラスが持っているプレイヤーポインタに、
 	プレイヤーを結びつける*/ 
 	this->player = player;
+
+	// 配列初期化
+	this->save_position = std::vector<Vec2>(30, this->player->GetPosition());
+
 	return true;
 }
 
@@ -54,11 +58,20 @@ void Ghost::Update(Subject* subject)
 
 	/*PlayerMoveの座標を取得する*/
 	position = playerMove->GetPosition();
-	/*追従する際に座標をずらす*/
-	position.x -= 100.0f;
-	position.y -= 100.0f;
+	
 
-	ghost->setPosition(position.x, position.y);
+	Following();
+	
+	ghost->setPosition(save_position[29].x, save_position[29].y);
+}
+
+// グラディウスオプション風の動きを再現させる関数
+void Ghost::Following()
+{
+	// 一番後ろの要素を削除
+	save_position.pop_back();
+	// 先頭の要素にプレイヤーの座標を追加
+	save_position.insert(save_position.begin(), player->GetPosition());
 }
 
 // ゴーストの座標を取得

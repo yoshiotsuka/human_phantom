@@ -42,7 +42,6 @@ bool Player::Initialize(cocos2d::Scene* conectScene, PlayerMove* player_move)
 	Size size = Director::getInstance()->getWinSize();
 
 	player->setPosition(Vec2(550, 300));
-	
 
 	this->player_move = player_move;
 	this->player_move->Init(conectScene,this);
@@ -53,10 +52,9 @@ bool Player::Initialize(cocos2d::Scene* conectScene, PlayerMove* player_move)
 
 Vec2 Player::GetPosition() 
 {
-
 	return player->getPosition();
-
 }
+
 void Player::SetPostion(Vec2 postion)
 {
 	player->setPosition(postion);

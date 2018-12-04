@@ -48,7 +48,6 @@ void PlayerMove::onMouseMove(Event* event)
 		/*登録されているオブザーバーに通知する*/
 		this->notifyObservers();
 	}
-
 }
 
 Vec2 PlayerMove::GetPosition()
@@ -64,8 +63,6 @@ void PlayerMove::onMouseDown(Event* event)
 }
 void PlayerMove::onMouseUp(Event* event)
 {
-	
-
 	touchflag = false;
 }
 
