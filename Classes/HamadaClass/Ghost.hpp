@@ -22,9 +22,12 @@ public:
 
 	// ÉQÉbÉ^Å[
 	Vec2 GetPosition();
+
+	void Following();
 private:
 	Sprite* ghost;
 	Vec2 position;
 
 	Player* player;
+	std::vector<Vec2> save_position;
 };
