@@ -2,6 +2,7 @@
 #include "HelloWorldScene.h"
 #include "cocos2d.h"
 #include "HamadaClass\Observer.hpp"
+USING_NS_CC;
 
 class Player;
 
@@ -13,7 +14,17 @@ public:
 	PlayerMove();
 	~PlayerMove();
 
-	bool Init(cocos2d::Scene* scene , Player* player);
+	bool Init(cocos2d::Scene* node , Player* player);
+	//void Update();
+
+	////タッチ開始
+	bool  onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+
+	//タッチ中
+	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
+
+	//タッチ終了
+	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	
 	Vec2 GetPosition();
 
@@ -29,5 +40,10 @@ private:
 
 	Player* player;
 	Vec2 position;
+
+	Vec2 prev_mouse_position;
+
+	//タッチポジション
+	Vec2 touch_postion;
 };
 
